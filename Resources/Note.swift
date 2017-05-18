@@ -10,19 +10,19 @@ import Foundation
 
 class Note: Equatable {
     
-    private static let entryKey = "entry"
+    private static let noteKey = "note"
     
-    var entry: String
+    var text: String
     
     // Initialiezer
-    init(entry: String) {
-        self.entry = entry 
+    init(text: String) {
+        self.text = text
     }
     
     // Dictionary Representation 
     
     var dictionaryRepresentation: [String: String] {
-        let noteDictionary = [Note.entryKey: self.entry]
+        let noteDictionary = [Note.noteKey: self.text]
         
         return noteDictionary
     }
@@ -30,19 +30,19 @@ class Note: Equatable {
     // Failable initializer 
     
     init?(noteDictionary: [String: String]) {
-        guard let entry = noteDictionary[Note.entryKey] else {
+        guard let text = noteDictionary[Note.noteKey] else {
             
-            self.entry = "This is dumb"
+            self.text = "This is dumb"
             
             return nil
         }
         
-        self.entry = entry
+        self.text = text
     }
 }
 
 func ==(lhs: Note, rhs: Note) -> Bool {
-    if lhs.entry != rhs.entry { return false }
+    if lhs.text != rhs.text { return false }
     
     return true
 }

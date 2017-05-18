@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Notes-->
         <scene sceneID="11V-aA-E4N">
             <objects>
                 <tableViewController id="CZb-3L-K8C" customClass="NoteListTableViewController" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,13 +18,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3ee-3A-1sm">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noteCell" id="3ee-3A-1sm">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3ee-3A-1sm" id="MYQ-Gv-2Ye">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="u1D-bx-Xkx" kind="show" identifier="toNoteDetail" id="xds-B5-l6B"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -32,7 +35,7 @@
                             <outlet property="delegate" destination="CZb-3L-K8C" id="O76-ys-tVI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="i6y-KE-uxM">
+                    <navigationItem key="navigationItem" title="Notes" id="i6y-KE-uxM">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="EgD-Ex-Le7">
                             <connections>
                                 <segue destination="u1D-bx-Xkx" kind="show" id="oSb-lK-SOV"/>
@@ -44,7 +47,7 @@
             </objects>
             <point key="canvasLocation" x="593" y="187"/>
         </scene>
-        <!--Note Detail View Controller-->
+        <!--Title-->
         <scene sceneID="xAC-cL-7o6">
             <objects>
                 <viewController id="u1D-bx-Xkx" customClass="NoteDetailViewController" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
@@ -55,12 +58,36 @@
                     <view key="view" contentMode="scaleToFill" id="MFe-jo-hOg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add text here. " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="B3z-f6-J1D">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="B3z-f6-J1D" firstAttribute="leading" secondItem="MFe-jo-hOg" secondAttribute="leading" id="45v-U6-iRn"/>
+                            <constraint firstItem="tY1-Fl-wg2" firstAttribute="top" secondItem="B3z-f6-J1D" secondAttribute="bottom" id="NIW-eg-lce"/>
+                            <constraint firstItem="B3z-f6-J1D" firstAttribute="top" secondItem="38V-34-of2" secondAttribute="bottom" id="iTN-kq-jsb"/>
+                            <constraint firstAttribute="trailing" secondItem="B3z-f6-J1D" secondAttribute="trailing" id="phY-oH-PwE"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="WHl-5P-ou7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="XKX-pE-YSZ">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="u1D-bx-Xkx" id="msC-IU-fpm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="noteTextView" destination="B3z-f6-J1D" id="q49-zw-q9b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2mt-QV-mua" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1438" y="187"/>
+            <point key="canvasLocation" x="1437.5999999999999" y="186.65667166416793"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jvc-kv-Pml">
@@ -79,4 +106,7 @@
             <point key="canvasLocation" x="-359" y="187"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="xds-B5-l6B"/>
+    </inferredMetricsTieBreakers>
 </document>
